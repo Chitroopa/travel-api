@@ -33,7 +33,7 @@ group :development, :test do
   gem 'factory'
   gem 'factory_girl_rails'
   gem 'capybara'
-
+  gem 'pry'
 end
 
 group :development do

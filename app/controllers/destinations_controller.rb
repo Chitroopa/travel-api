@@ -1,7 +1,14 @@
 class DestinationsController < ApplicationController
 
   def index
-  @destinations = {"destinations": "France"}
+  @destinations = Destination.all
+  if params[:city]
+    @destinations = Destination.search(params[:city])
+  elsif params[:country]
+    @destinations = Destination.search_country(params[:country])
+  elsif params[:most_popular]
+     @destinations = Destination.popular_destinations
+  end
   json_response(@destinations)
   end
 
@@ -17,7 +24,7 @@ class DestinationsController < ApplicationController
 
   def update
     @destination = Destination.find(params[:id])
-    if @destination.update!
+    if @destination.update!(destination_params)
       render status: 200, json: {
         message: "Destination deleted"
       }
