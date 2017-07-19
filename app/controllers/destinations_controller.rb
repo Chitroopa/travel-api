@@ -11,7 +11,7 @@ class DestinationsController < ApplicationController
       @destinations = Destination.get_random
     else
       @result = []
-      Destination.all.each do |destination|
+      Destination.all.paginate(:page => params[:page], :per_page => 5).each do |destination|
         reviews = destination.reviews
         review_arr = destination.as_json(include: :reviews)
         @result << review_arr
