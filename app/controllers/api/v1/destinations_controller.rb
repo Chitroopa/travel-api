@@ -11,13 +11,14 @@ module Api::V1
       elsif params[:get_random]
         @destinations = Destination.get_random
       else
-        @result = []
-        Destination.all.paginate(:page => params[:page], :per_page => 5).each do |destination|
-          reviews = destination.reviews
-          review_arr = destination.as_json(include: :reviews)
-          @result << review_arr
-        end
-        @destinations = @result
+        # @result = []
+        @destinations = Destination.all.paginate(:page => params[:page], :per_page => 5)
+        # .each do |destination|
+        #   reviews = destination.reviews
+        #   review_arr = destination.as_json(include: :reviews)
+        #   @result << review_arr
+        # end
+        # @destinations = @result
       end
         json_response(@destinations)
     end
