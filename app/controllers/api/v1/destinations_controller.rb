@@ -26,12 +26,13 @@ module Api::V1
     def show
       @destination = Destination.find(params[:id])
       reviews = @destination.reviews
-      json_response(@destination.as_json(include: :reviews))
+      json_response(@destination)
     end
 
     def create
       @destination = Destination.create!(destination_params)
-      json_response(@destination, :created)
+      json_response(@destination)
+
     end
 
     def update
@@ -59,7 +60,7 @@ module Api::V1
     end
 
     def destination_params
-      params.permit(:name, :country, :city, :review)
+      params.permit(:name, :country, :city, :rating)
     end
   end
 end

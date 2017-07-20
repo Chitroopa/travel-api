@@ -57,6 +57,6 @@ class DestinationsController < ApplicationController
   end
 
   def destination_params
-    params.permit(:name, :country, :city, :review)
+    params.permit(:name, :country, :city, :rating)
   end
 end
