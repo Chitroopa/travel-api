@@ -39,7 +39,7 @@ module Api::V1
       @destination = Destination.find(params[:id])
       if @destination.update!(destination_params)
         render status: 200, json: {
-          message: "Destination deleted"
+          message: "Destination updated"
         }
         end
       end
